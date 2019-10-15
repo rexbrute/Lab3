@@ -1,0 +1,116 @@
+#include <graphics.h>
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+
+#define PI 3.14159265
+
+int main()
+{
+    initwindow(800,600); //open a 800x600 graphics window
+    int c;
+    int h=0;
+    int points[14]= {0};
+    int i,n = 6, R = 120, Xc=400, Yc=300;
+    // completez coordonatele poligonului regulat cu n=6 varfuri (hexagon)
+    for(int i=0; i<n; i++)
+    {
+        double alfa = i * 2*PI/n;
+        points[2*i]   = Xc + R * cos(alfa);
+        points[2*i+1] = Yc + R * sin(alfa);
+    }
+    points[12]=points[0];
+    points[13]=points[1];
+
+    setcolor(RED);
+    drawpoly(n+1,points);
+    delay(1000);
+    c=getch();
+    cleardevice();
+    switch(c)
+    {
+    case 'n' :
+        for(int i=0; i<n; i++)
+        {
+            double alfa = i * 2*PI/n;
+            points[2*i]   = Xc +50 * cos(alfa);
+            points[2*i+1] = Yc +50 * sin(alfa);
+        }
+        points[12]=points[0];
+        points[13]=points[1];
+
+        setcolor(MAGENTA);
+        drawpoly(n+1,points);
+        break;
+    case 'm' :
+        for(int i=0; i<n; i++)
+        {
+            double alfa = i * 2*PI/n;
+            points[2*i]   = Xc + 300 * cos(alfa);
+            points[2*i+1] = Yc + 300 * sin(alfa);
+        }
+        points[12]=points[0];
+        points[13]=points[1];
+
+        setcolor(MAGENTA);
+        drawpoly(n+1,points);
+        break;
+    case 'd' :
+        for(int i=0; i<n; i++)
+        {
+            double alfa = i * 2*PI/n;
+            points[2*i]   = Xc+100 + R * cos(alfa);
+            points[2*i+1] = Yc + R * sin(alfa);
+        }
+        points[12]=points[0];
+        points[13]=points[1];
+
+        setcolor(MAGENTA);
+        drawpoly(n+1,points);
+        break;
+    case 's' :
+        for(int i=0; i<n; i++)
+        {
+            double alfa = i * 2*PI/n;
+            points[2*i]   = Xc + R * cos(alfa);
+            points[2*i+1] = Yc+100 + R * sin(alfa);
+        }
+        points[12]=points[0];
+        points[13]=points[1];
+
+        setcolor(MAGENTA);
+        drawpoly(n+1,points);
+        break;
+    case 'w' :
+        for(int i=0; i<n; i++)
+        {
+            double alfa = i * 2*PI/n;
+            points[2*i]   = Xc + R * cos(alfa);
+            points[2*i+1] = Yc-100 + R * sin(alfa);
+        }
+        points[12]=points[0];
+        points[13]=points[1];
+
+        setcolor(MAGENTA);
+        drawpoly(n+1,points);
+        break;
+    case 'a' :
+        for(int i=0; i<n; i++)
+        {
+            double alfa = i * 2*PI/n;
+            points[2*i]   = Xc-100 + R * cos(alfa);
+            points[2*i+1] = Yc + R * sin(alfa);
+        }
+        points[12]=points[0];
+        points[13]=points[1];
+
+        setcolor(MAGENTA);
+        drawpoly(n+1,points);
+        break;
+    }
+
+    while(!kbhit());     // wait for user to press a key
+
+    closegraph();        //close graphics window
+    return 0;
+}
